@@ -1,16 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CellsPool : MonoBehaviour
 {
+    public List<Cell> Cells => _cells;
+
     private List<Cell> _cells;
 
     private void Start()
     {
         _cells = GetAllCells();
-        Debug.Log(_cells.Count);
     }
+
+    public List<Cell> GetMyCells(ScriptableObject type) => _cells.Where(cell => cell.Type == type).ToList();
     private List<Cell> GetAllCells()
     {
         List<Cell> cells = new List<Cell>();
