@@ -6,14 +6,17 @@ public class CellsPool : MonoBehaviour
 {
     public List<Cell> Cells => _cells;
 
+    [SerializeField] private UnitData _defaultData;
+
     private List<Cell> _cells;
 
     private void Start()
     {
         _cells = GetAllCells();
+        InitializeCells();
     }
 
-    public List<Cell> GetMyCells(ScriptableObject type) => _cells.Where(cell => cell.Type == type).ToList();
+    public List<Cell> GetMyCells(UnitType type) => _cells.Where(cell => cell.Type == type).ToList();
     private List<Cell> GetAllCells()
     {
         List<Cell> cells = new List<Cell>();
@@ -23,5 +26,12 @@ public class CellsPool : MonoBehaviour
                 cells.Add(cell);
         }
         return cells;
+    }
+    private void InitializeCells()
+    {
+        foreach(Cell cell in _cells)
+        {
+            cell.Init(_defaultData);
+        }
     }
 }
