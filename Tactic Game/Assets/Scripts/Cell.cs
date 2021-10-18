@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Cell : MonoBehaviour
@@ -30,6 +31,7 @@ public class Cell : MonoBehaviour
     public void Init(UnitData defaultData)
     {
         _ownerData = defaultData;
+        StartCoroutine(StartReproduction());
     }
     public void SendUnits(GameObject target)
     {
@@ -68,6 +70,14 @@ public class Cell : MonoBehaviour
         {
             _ownerData = unit.OwnerData;
             _mass = 1;
+        }
+    }
+    private IEnumerator StartReproduction()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            _mass += _ownerData.Reproduction;
         }
     }
 }

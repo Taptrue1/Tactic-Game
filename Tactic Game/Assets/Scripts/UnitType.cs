@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "UnitType", order = 0)]
 public class UnitType : ScriptableObject
 {
     [Header("References")]

@@ -10,13 +10,16 @@ public class CellsPool : MonoBehaviour
 
     private List<Cell> _cells;
 
-    private void Start()
+
+    private void Awake()
     {
+        _defaultData = new UnitData(new UnitType(), 0, 0, 0, 0);
         _cells = GetAllCells();
         InitializeCells();
     }
 
     public List<Cell> GetMyCells(UnitType type) => _cells.Where(cell => cell.Type == type).ToList();
+
     private List<Cell> GetAllCells()
     {
         List<Cell> cells = new List<Cell>();
