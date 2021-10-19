@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6072833697550119385}
   - component: {fileID: 6072833697550119384}
+  - component: {fileID: 6496883885381141084}
   - component: {fileID: 6072833697550119383}
   m_Layer: 0
   m_Name: Cell
@@ -83,6 +84,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &6496883885381141084
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6072833697550119382}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!114 &6072833697550119383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,3 +113,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitSpawnOffset: 0.25
+  _mass: 0

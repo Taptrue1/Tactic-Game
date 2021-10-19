@@ -3,6 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "UnitType", order = 0)]
 public class UnitType : ScriptableObject
 {
+    public Color Color => _unitColor;
+
     [Header("References")]
     [SerializeField] private Unit _unitPrefab;
 

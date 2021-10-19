@@ -1,17 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class Cell : MonoBehaviour
 {
     public int Mass => _mass;
     public UnitType Type => _ownerData.Type;
 
     [SerializeField] private float _unitSpawnOffset;
+    [SerializeField] private int _mass;
 
-    private int _mass;
     private UnitData _ownerData;
     private UnitData _defaultData;
+    private SpriteRenderer _spriteRenderer;
 
+    private void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         bool isUnit = collision.TryGetComponent(out Unit unit);
@@ -31,10 +37,13 @@ public class Cell : MonoBehaviour
     public void Init(UnitData defaultData)
     {
         _ownerData = defaultData;
+        _spriteRenderer.color = _ownerData.Type.Color;
         StartCoroutine(StartReproduction());
     }
     public void SendUnits(GameObject target)
     {
+        if (target == gameObject) return;
+
         for(int i = 0; i < _mass; i++)
         {
             SendUnit(target);
@@ -71,6 +80,8 @@ public class Cell : MonoBehaviour
             _ownerData = unit.OwnerData;
             _mass = 1;
         }
+
+        _spriteRenderer.color = _ownerData.Type.Color;
     }
     private IEnumerator StartReproduction()
     {

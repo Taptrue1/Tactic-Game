@@ -1,32 +1,33 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Collider2D))]
 public class Player : MonoBehaviour
 {
     private UnitData _data;
     private Cell _target;
     private List<Cell> _choosedCells;
 
-    private void Start()
+    private void Awake()
     {
         _choosedCells = new List<Cell>();
     }
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButton(0))
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var ray = Physics2D.Raycast(mousePosition, Vector2.zero);
+            var rayResult = Physics2D.Raycast(mousePosition, Vector2.zero).collider;
+            Debug.DrawRay(mousePosition, Vector2.zero);
+            if (!rayResult) return;
 
-            if (!ray) return;
-
-            var isCell = ray.collider.TryGetComponent(out Cell cell);
+            var isCell = rayResult.TryGetComponent(out Cell cell);
 
             if (!isCell) return;
-            
+
             ChooseCell(cell);
         }
-        else if(_choosedCells.Count > 0)
+        else if(_choosedCells.Count > 1)
         {
             SendUnits();
         }

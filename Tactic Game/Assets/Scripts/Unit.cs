@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(CircleCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Unit : MonoBehaviour
 {
-    public UnitType Type => _ownerData.Type;
     public UnitData OwnerData => _ownerData;
+    public UnitType Type => _ownerData.Type;
     public GameObject Target => _target;
 
     private UnitData _ownerData;
@@ -32,8 +33,10 @@ public class Unit : MonoBehaviour
 
     public void Init(GameObject target, UnitData ownerData)
     {
-        _ownerData = ownerData;
         _target = target;
+        _ownerData = ownerData;
+
         _movementDirection = target.transform.position - transform.position;
+        _movementDirection = _movementDirection.normalized;
     }
 }

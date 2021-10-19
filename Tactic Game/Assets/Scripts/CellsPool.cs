@@ -6,19 +6,14 @@ public class CellsPool : MonoBehaviour
 {
     public List<Cell> Cells => _cells;
 
-    [SerializeField] private UnitData _defaultData;
-
     private List<Cell> _cells;
 
-
-    private void Awake()
+    public void Init(UnitData defaultData)
     {
-        _defaultData = new UnitData(new UnitType(), 0, 0, 0, 0);
         _cells = GetAllCells();
-        InitializeCells();
+        InitializeCells(defaultData);
     }
-
-    public List<Cell> GetMyCells(UnitType type) => _cells.Where(cell => cell.Type == type).ToList();
+    //public List<Cell> GetMyCells(UnitType type) => _cells.Where(cell => cell.Type == type).ToList();
 
     private List<Cell> GetAllCells()
     {
@@ -30,11 +25,11 @@ public class CellsPool : MonoBehaviour
         }
         return cells;
     }
-    private void InitializeCells()
+    private void InitializeCells(UnitData defaultData)
     {
         foreach(Cell cell in _cells)
         {
-            cell.Init(_defaultData);
+            cell.Init(defaultData);
         }
     }
 }
