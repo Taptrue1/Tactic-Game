@@ -69,7 +69,7 @@ public class Cell : MonoBehaviour
     }
     private void Attack(int value)
     {
-        var attack = value - _ownerData.Defence;
+        var attack = Mathf.CeilToInt(value - _ownerData.Defence.Value);
 
         if (attack <= 0) return;
 
@@ -94,7 +94,7 @@ public class Cell : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(1);
-            _mass += _ownerData.Reproduction;
+            _mass += Mathf.CeilToInt(_ownerData.Reproduction.Value);
         }
     }
 }

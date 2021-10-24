@@ -20,7 +20,7 @@ public class Unit : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        _rigidbody.velocity = _movementDirection * _ownerData.Speed;
+        _rigidbody.velocity = _movementDirection * _ownerData.Speed.Value;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

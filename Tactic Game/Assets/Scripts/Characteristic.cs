@@ -8,7 +8,7 @@ public class Characteristic
 
     private UpgradeData _data;
 
-    public Characteristic(float value, int price, UpgradeData data)
+    public Characteristic(float value, int price = 0, UpgradeData data = null)
     {
         _value = value;
         _price = price;
