@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class CellsPool : MonoBehaviour
@@ -13,7 +12,6 @@ public class CellsPool : MonoBehaviour
         _cells = GetAllCells();
         InitializeCells(defaultData);
     }
-    //public List<Cell> GetMyCells(UnitType type) => _cells.Where(cell => cell.Type == type).ToList();
 
     private List<Cell> GetAllCells()
     {

@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             var rayResult = Physics2D.Raycast(mousePosition, Vector2.zero).collider;
-            Debug.DrawRay(mousePosition, Vector2.zero);
+
             if (!rayResult) return;
 
             var isCell = rayResult.TryGetComponent(out Cell cell);

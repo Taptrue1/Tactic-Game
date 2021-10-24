@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c9687fa1363e844c9927542337cb7d3, type: 3}
-  m_Name: New Unit Type
+  m_Name: PlayerType
   m_EditorClassIdentifier: 
   _unitPrefab: {fileID: 1058931032820245810, guid: 0c535655f22ff86468d5ceb6ceb992b0, type: 3}
   _unitColor: {r: 0, g: 0.16729042, b: 0.972549, a: 1}

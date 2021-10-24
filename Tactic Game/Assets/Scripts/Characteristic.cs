@@ -1,18 +1,18 @@
-﻿public class Characteristic
+﻿using System;
+public class Characteristic
 {
     public float Value => _value;
 
     private float _value;
-    private float _upgradeCoeff;
-    private int _upgradePrice;
-    private float _priceCoeff;
+    private int _price;
 
-    public Characteristic(float startValue, float upgradeCoeff, int upgradePrice, float priceCoeff)
+    private UpgradeData _data;
+
+    public Characteristic(float value, int price, UpgradeData data)
     {
-        _value = startValue;
-        _upgradeCoeff = upgradeCoeff;
-        _upgradePrice = upgradePrice;
-        _priceCoeff = priceCoeff;
+        _value = value;
+        _price = price;
+        _data = data;
     }
 
     public int Upgrade(int money)
@@ -21,13 +21,23 @@
 
         if(CanUpgrade(money))
         {
-            resultMoney -= _upgradePrice;
-            _value += _upgradeCoeff;
-            _upgradePrice += (int)_priceCoeff;
+            resultMoney -= _price;
+
+            switch(_data.BonusOperation)
+            {
+                case Operation.Add: _value += _data.BonusCoeff; break;
+                case Operation.Multiply: _value *= _data.BonusCoeff; break;
+            }
+
+            switch(_data.PriceOperation)
+            {
+                case Operation.Add: _price = (int)_data.PriceCoeff; break;
+                case Operation.Multiply: _price =  Convert.ToInt32(_price * _data.PriceCoeff); break;
+            }
         }
 
         return resultMoney;
     }
 
-    private bool CanUpgrade(int money) => money >= _upgradePrice;
+    private bool CanUpgrade(int money) => money >= _price;
 }

@@ -34,9 +34,15 @@ public class Cell : MonoBehaviour
         CheckMass(unit);
     }
 
-    public void Init(UnitData defaultData)
+    public void Init(UnitData defaultData, UnitData ownerData = null)
     {
-        _ownerData = defaultData;
+        _defaultData = defaultData;
+
+        if (ownerData == null)
+            _ownerData = defaultData;
+        else
+            _ownerData = ownerData;
+
         _spriteRenderer.color = _ownerData.Type.Color;
         StartCoroutine(StartReproduction());
     }
