@@ -19,8 +19,12 @@ public class Level : MonoBehaviour
     private UnitData _aiData;
     private UnitData _defaultData;
 
+    private Drawer _drawer;
+
     private void Start()
     {
+        _drawer = new Drawer();
+
         _playerData = new UnitData(_playerType, 2, 2, 2, 2);
         _aiData = new UnitData(_aiType, 1, 1, 1, 1);
         _defaultData = new UnitData(_defaultType, 0, 0, 0, 0);
@@ -29,6 +33,8 @@ public class Level : MonoBehaviour
 
         _player.Init(_playerData);
         _ai.Init(_aiData, _cellPool);
+
+        _drawer.Init(_player);
 
         _playerCell.Init(_defaultData, _playerData);
         _aiCell.Init(_defaultData, _aiData);
