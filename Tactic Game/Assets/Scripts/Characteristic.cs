@@ -1,4 +1,5 @@
 ﻿using System;
+
 public class Characteristic
 {
     public float Value => _value;

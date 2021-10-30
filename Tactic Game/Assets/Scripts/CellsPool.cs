@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CellsPool : MonoBehaviour
@@ -10,8 +11,10 @@ public class CellsPool : MonoBehaviour
     public void Init(UnitData defaultData)
     {
         _cells = GetAllCells();
-        InitializeCells(defaultData);
+        InitCells(defaultData);
     }
+    public List<Cell> GetEnemyCells(UnitType type) => _cells.Where(cell => cell.Type != type).ToList();
+    public List<Cell> GetMyCells(UnitType type) => _cells.Where(cell => cell.Type == type).ToList();
 
     private List<Cell> GetAllCells()
     {
@@ -23,7 +26,7 @@ public class CellsPool : MonoBehaviour
         }
         return cells;
     }
-    private void InitializeCells(UnitData defaultData)
+    private void InitCells(UnitData defaultData)
     {
         foreach(Cell cell in _cells)
         {
