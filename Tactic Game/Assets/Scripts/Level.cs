@@ -26,6 +26,7 @@ public class Level : MonoBehaviour
         _defaultData = new UnitData(_defaultType, 0, 0, 0, 0);
 
         _cellPool.Init(_defaultData);
+
         _player.Init(_playerData);
         _ai.Init(_aiData, _cellPool);
 

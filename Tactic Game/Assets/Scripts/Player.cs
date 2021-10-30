@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private LayerMask _cellsLayer;
+
     private UnitData _data;
     private Cell _target;
     private List<Cell> _choosedCells;
@@ -16,7 +18,7 @@ public class Player : MonoBehaviour
         if(Input.GetMouseButton(0))
         {
             var mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var rayResult = Physics2D.Raycast(mousePosition, Vector2.zero).collider;
+            var rayResult = Physics2D.Raycast(mousePosition, Vector2.zero, 1, _cellsLayer).collider;
 
             if (!rayResult) return;
 
