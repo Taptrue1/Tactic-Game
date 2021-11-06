@@ -32,7 +32,7 @@ public class AI : MonoBehaviour
 
         foreach(Cell cell in myCells)
         {
-            cell.SendUnits(target.gameObject);
+            cell.SendUnits(target.transform);
         }
     }
     private Cell FindWeakTarget()

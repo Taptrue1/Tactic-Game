@@ -23,7 +23,7 @@ public class Cell : MonoBehaviour
         bool isUnit = collision.TryGetComponent(out Unit unit);
 
         if (!isUnit) return;
-        if (unit.Target != gameObject) return;
+        if (unit.Target != gameObject.transform) return;
 
 
         if (unit.Type == Type)
@@ -43,10 +43,10 @@ public class Cell : MonoBehaviour
         else
             _ownerData = ownerData;
 
-        _spriteRenderer.color = _ownerData.Type.Color;
+        ChangeColor(_ownerData.Type.Color);
         StartCoroutine(StartReproduction());
     }
-    public void SendUnits(GameObject target)
+    public void SendUnits(Transform target)
     {
         if (target == gameObject) return;
 
@@ -58,16 +58,24 @@ public class Cell : MonoBehaviour
         _mass = 0;
     }
 
-    private void SendUnit(GameObject target)
+    private void SendUnit(Transform target)
+    {
+        var unit = SpawnUnit();
+        unit.SetTarget(target);
+    }
+    private Unit SpawnUnit()
     {
         var x = transform.position.x + Random.Range(-_unitSpawnOffset, _unitSpawnOffset);
         var y = transform.position.y + Random.Range(-_unitSpawnOffset, _unitSpawnOffset);
         var spawnPosition = new Vector2(x, y);
 
         var unit = _ownerData.Type.GetUnit(spawnPosition);
-        unit.Init(target, _ownerData);
+
+        unit.Init(_ownerData);
+
+        return unit;
     }
-    private void Attack(int value)
+    private void ApplyDamage(int value)
     {
         var attack = Mathf.CeilToInt(value - _ownerData.Defence.Value);
 
@@ -87,7 +95,11 @@ public class Cell : MonoBehaviour
             _mass = 1;
         }
 
-        _spriteRenderer.color = _ownerData.Type.Color;
+       ChangeColor(_ownerData.Type.Color);
+    }
+    private void ChangeColor(Color color)
+    {
+        _spriteRenderer.color = color;
     }
     private IEnumerator StartReproduction()
     {

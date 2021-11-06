@@ -8,7 +8,7 @@ public class Drawer
         player.DrawLines = DrawLines;
         player.ClearLines = ClearLines;
     }
-    private void DrawLines(List<Cell> choosedCells, Cell target)
+    private void DrawLines(List<Cell> choosedCells, Vector2 target)
     {
         foreach(Cell cell in choosedCells)
         {
@@ -17,7 +17,7 @@ public class Drawer
                 if(child.TryGetComponent(out LineRenderer lineRenderer))
                 {
                     lineRenderer.SetPosition(0, cell.transform.position);
-                    lineRenderer.SetPosition(1, target.transform.position);
+                    lineRenderer.SetPosition(1, target);
                 }
             }
         }
