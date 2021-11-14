@@ -22,7 +22,9 @@ public class AI : MonoBehaviour
             yield return new WaitForSeconds(delay);
 
             Cell target = FindWeakTarget();
+
             if (target == null) yield break;
+
             SendUnits(target);
         }
     }
@@ -38,7 +40,9 @@ public class AI : MonoBehaviour
     private Cell FindWeakTarget()
     {
         List<Cell> enemyCells = _pool.GetEnemyCells(_data.Type);
+
         if (enemyCells.Count < 1) return null;
+
         Cell target = enemyCells[0];
         
         foreach(Cell cell in enemyCells)

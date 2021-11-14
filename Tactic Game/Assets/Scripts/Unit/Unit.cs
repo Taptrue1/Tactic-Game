@@ -26,8 +26,9 @@ public class Unit : MonoBehaviour
     {
         bool isUnit = collision.gameObject.TryGetComponent(out Unit unit);
         bool isTarget = collision.gameObject.transform == _target;
+        bool canDestroy = isTarget || isUnit && unit.Type != Type;
 
-        if (isTarget || isUnit && unit.Type != Type)
+        if (canDestroy)
             Destroy(gameObject);
     }
 

@@ -25,13 +25,7 @@ public class Cell : MonoBehaviour
         if (!isUnit) return;
         if (unit.Target != gameObject.transform) return;
 
-
-        if (unit.Type == Type)
-            _mass++;
-        else
-            _mass--; //Attack(unit.OwnerData.Attack);
-
-        CheckMass(unit);
+        Attack(unit);
     }
 
     public void Init(UnitData defaultData, UnitData ownerData = null)
@@ -68,12 +62,21 @@ public class Cell : MonoBehaviour
         var x = transform.position.x + Random.Range(-_unitSpawnOffset, _unitSpawnOffset);
         var y = transform.position.y + Random.Range(-_unitSpawnOffset, _unitSpawnOffset);
         var spawnPosition = new Vector2(x, y);
-
         var unit = _ownerData.Type.GetUnit(spawnPosition);
 
         unit.Init(_ownerData);
 
         return unit;
+    }
+    private void Attack(Unit unit)
+    {
+        if (unit.Type == Type)
+            _mass++;
+        else
+            _mass--; //ApplyDamage(unit.OwnerData.Attack);
+
+        ChangeOwner(unit);
+        ChangeColor(_ownerData.Type.Color);
     }
     private void ApplyDamage(int value)
     {
@@ -83,19 +86,21 @@ public class Cell : MonoBehaviour
 
         _mass -= attack;
     }
-    private void CheckMass(Unit unit)
+    private void ChangeOwner(Unit unit)
     {
-        if (_mass == 0)
+        var canChangeToDefault = _mass == 0;
+        var canChangeToOther = _mass < 0;
+
+        if (canChangeToDefault)
         {
             _ownerData = _defaultData;
+            return;
         }
-        else if (_mass < 0)
+        if (canChangeToOther)
         {
             _ownerData = unit.OwnerData;
             _mass = 1;
         }
-
-       ChangeColor(_ownerData.Type.Color);
     }
     private void ChangeColor(Color color)
     {
