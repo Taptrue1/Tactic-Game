@@ -5,6 +5,7 @@ public class Level : MonoBehaviour
     [SerializeField] CellsPool _cellPool;
     [SerializeField] Player _player;
     [SerializeField] AI _ai;
+    [SerializeField] Transform _unitPool;
 
     [Header("StartBases")]
     [SerializeField] Cell _playerCell;
@@ -29,14 +30,13 @@ public class Level : MonoBehaviour
         _aiData = new UnitData(_aiType, 1, 1, 1, 1);
         _defaultData = new UnitData(_defaultType, 0, 0, 0, 0);
 
-        _cellPool.Init(_defaultData);
+        _cellPool.Init(_defaultData, _unitPool);
+        _drawer.Init(_player);
 
         _player.Init(_playerData);
         _ai.Init(_aiData, _cellPool);
 
-        _drawer.Init(_player);
-
-        _playerCell.Init(_defaultData, _playerData);
-        _aiCell.Init(_defaultData, _aiData);
+        _playerCell.Init(_defaultData, _unitPool, _playerData);
+        _aiCell.Init(_defaultData, _unitPool, _aiData);
     }
 }

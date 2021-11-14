@@ -5,13 +5,13 @@ using UnityEngine;
 public class CellsPool : MonoBehaviour
 {
     public List<Cell> Cells => _cells;
-
+    
     private List<Cell> _cells;
 
-    public void Init(UnitData defaultData)
+    public void Init(UnitData defaultData, Transform unitPool)
     {
         _cells = GetAllCells();
-        InitCells(defaultData);
+        InitCells(defaultData, unitPool);
     }
     public List<Cell> GetEnemyCells(UnitType type) => _cells.Where(cell => cell.Type != type).ToList();
     public List<Cell> GetMyCells(UnitType type) => _cells.Where(cell => cell.Type == type).ToList();
@@ -19,6 +19,7 @@ public class CellsPool : MonoBehaviour
     private List<Cell> GetAllCells()
     {
         List<Cell> cells = new List<Cell>();
+        
         foreach(Transform child in gameObject.transform)
         {
             if (child.TryGetComponent(out Cell cell))
@@ -26,11 +27,11 @@ public class CellsPool : MonoBehaviour
         }
         return cells;
     }
-    private void InitCells(UnitData defaultData)
+    private void InitCells(UnitData defaultData, Transform unitPool)
     {
         foreach(Cell cell in _cells)
         {
-            cell.Init(defaultData);
+            cell.Init(defaultData, unitPool);
         }
     }
 }

@@ -11,9 +11,9 @@ public class UnitType : ScriptableObject
     [Header("Parameters")]
     [SerializeField] Color _unitColor;
 
-    public Unit GetUnit(Vector2 position)
+    public Unit GetUnit(Vector2 position, Transform parent)
     {
-        var unit = Instantiate(_unitPrefab, position, Quaternion.identity);
+        var unit = Instantiate(_unitPrefab, position, Quaternion.identity, parent);
         unit.gameObject.GetComponent<SpriteRenderer>().color = _unitColor;
         return unit;
     }

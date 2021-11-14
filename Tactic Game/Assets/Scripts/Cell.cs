@@ -13,6 +13,7 @@ public class Cell : MonoBehaviour
     private UnitData _ownerData;
     private UnitData _defaultData;
     private SpriteRenderer _spriteRenderer;
+    private Transform _unitPool;
 
     private void Awake()
     {
@@ -28,9 +29,10 @@ public class Cell : MonoBehaviour
         Attack(unit);
     }
 
-    public void Init(UnitData defaultData, UnitData ownerData = null)
+    public void Init(UnitData defaultData, Transform unitPool, UnitData ownerData = null)
     {
         _defaultData = defaultData;
+        _unitPool = unitPool;
 
         if (ownerData == null)
             _ownerData = defaultData;
@@ -62,7 +64,7 @@ public class Cell : MonoBehaviour
         var x = transform.position.x + Random.Range(-_unitSpawnOffset, _unitSpawnOffset);
         var y = transform.position.y + Random.Range(-_unitSpawnOffset, _unitSpawnOffset);
         var spawnPosition = new Vector2(x, y);
-        var unit = _ownerData.Type.GetUnit(spawnPosition);
+        var unit = _ownerData.Type.GetUnit(spawnPosition, _unitPool);
 
         unit.Init(_ownerData);
 
