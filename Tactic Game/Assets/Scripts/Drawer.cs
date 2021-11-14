@@ -12,27 +12,23 @@ public class Drawer
     {
         foreach(Cell cell in choosedCells)
         {
-            foreach(Transform child in cell.transform)
-            {
-                if(child.TryGetComponent(out LineRenderer lineRenderer))
-                {
-                    lineRenderer.SetPosition(0, cell.transform.position);
-                    lineRenderer.SetPosition(1, target);
-                }
-            }
+            var lineRenderer = cell.GetComponentInChildren<LineRenderer>();
+
+            if (lineRenderer == null) continue;
+
+            lineRenderer.SetPosition(0, cell.transform.position);
+            lineRenderer.SetPosition(1, target);
         }
     }
     private void ClearLines(List<Cell> choosedCells)
     {
         foreach (Cell cell in choosedCells)
         {
-            foreach (Transform child in cell.transform)
-            {
-                if (child.TryGetComponent(out LineRenderer lineRenderer))
-                {
-                    lineRenderer.SetPosition(1, cell.transform.position);
-                }
-            }
+            var lineRenderer = cell.GetComponentInChildren<LineRenderer>();
+
+            if (lineRenderer == null) break;
+
+            lineRenderer.SetPosition(1, cell.transform.position);
         }
     }
 }
