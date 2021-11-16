@@ -72,10 +72,12 @@ public class Cell : MonoBehaviour
     }
     private void Attack(Unit unit)
     {
-        if (unit.Type == Type)
+        var isMyUnit = unit.Type == Type;
+
+        if (isMyUnit)
             _mass++;
         else
-            _mass--; //ApplyDamage(unit.OwnerData.Attack);
+            _mass--; //ApplyDamage(unit.OwnerData.Attack)
 
         ChangeOwner(unit);
         ChangeColor(_ownerData.Type.Color);

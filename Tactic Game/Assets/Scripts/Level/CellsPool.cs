@@ -15,6 +15,16 @@ public class CellsPool : MonoBehaviour
     }
     public List<Cell> GetEnemyCells(UnitType type) => _cells.Where(cell => cell.Type != type).ToList();
     public List<Cell> GetMyCells(UnitType type) => _cells.Where(cell => cell.Type == type).ToList();
+    public bool IsAllCellsCaptured()
+    {
+        var firstCell = _cells[0];
+        foreach(Cell cell in _cells)
+        {
+            if (firstCell.Type != cell.Type)
+                return false;
+        }
+        return true;
+    }
 
     private List<Cell> GetAllCells()
     {

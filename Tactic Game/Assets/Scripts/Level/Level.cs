@@ -1,14 +1,21 @@
+using System.Collections;
 using UnityEngine;
 
 public class Level : MonoBehaviour
 {
-    [SerializeField] CellsPool _cellPool;
-    [SerializeField] Player _player;
-    [SerializeField] AI _ai;
-    [SerializeField] Transform _unitPool;
+    [Header("Pools")]
+    [SerializeField] Transform _unitsPool;
+    [SerializeField] CellsPool _cellsPool;
 
-    [Header("StartBases")]
+    [Header("Referee Options")]
+    [SerializeField] private float _checkDelay;
+
+    [Header("Player")]
+    [SerializeField] Player _player;
     [SerializeField] Cell _playerCell;
+
+    [Header("Artificial Inlelligence")]
+    [SerializeField] AI _ai;
     [SerializeField] Cell _aiCell;
 
     [Header("Types")]
@@ -21,22 +28,41 @@ public class Level : MonoBehaviour
     private UnitData _defaultData;
 
     private Drawer _drawer;
+    private Referee _referee;
 
     private void Start()
     {
-        _drawer = new Drawer();
+        InitDatas();
+        _cellsPool.Init(_defaultData, _unitsPool);
+        InitEntities();
+        InitCells();
 
+        _drawer = new Drawer();
+        _drawer.Init(_player);
+
+        InitReferee();
+    }
+
+    private void InitDatas()
+    {
         _playerData = new UnitData(_playerType, 2, 2, 2, 2);
         _aiData = new UnitData(_aiType, 1, 1, 1, 1);
         _defaultData = new UnitData(_defaultType, 0, 0, 0, 0);
-
-        _cellPool.Init(_defaultData, _unitPool);
-        _drawer.Init(_player);
-
+    }
+    private void InitEntities()
+    {
         _player.Init(_playerData);
-        _ai.Init(_aiData, _cellPool);
-
-        _playerCell.Init(_defaultData, _unitPool, _playerData);
-        _aiCell.Init(_defaultData, _unitPool, _aiData);
+        _ai.Init(_aiData, _cellsPool);
+    }
+    private void InitCells()
+    {
+        _playerCell.Init(_defaultData, _unitsPool, _playerData);
+        _aiCell.Init(_defaultData, _unitsPool, _aiData);
+    }
+    private void InitReferee()
+    {
+        _referee = new Referee();
+        _referee.Init(_cellsPool, _unitsPool.gameObject, _checkDelay);
+        StartCoroutine(_referee.StartCheckLoop());
     }
 }
