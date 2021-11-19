@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AI : MonoBehaviour
+public class AI
 {
     private UnitData _data;
     private CellsPool _pool;
@@ -12,10 +12,9 @@ public class AI : MonoBehaviour
         _data = data;
         _pool = pool;
 
-        StartCoroutine(Attack(5));
+        //StartCoroutine(Attack(5));
     }
-
-    private IEnumerator Attack(float delay)
+    public IEnumerator StartAnalize(float delay)
     {
         while (true)
         {
@@ -28,6 +27,7 @@ public class AI : MonoBehaviour
             SendUnits(target);
         }
     }
+
     private void SendUnits(Cell target)
     {
         List<Cell> myCells = _pool.GetMyCells(_data.Type);

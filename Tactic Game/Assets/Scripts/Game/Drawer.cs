@@ -26,7 +26,7 @@ public class Drawer
         {
             var lineRenderer = cell.GetComponentInChildren<LineRenderer>();
 
-            if (lineRenderer == null) break;
+            if (lineRenderer == null) continue;
 
             lineRenderer.SetPosition(1, cell.transform.position);
         }

@@ -29,18 +29,18 @@ public class Cell : MonoBehaviour
         Attack(unit);
     }
 
-    public void Init(UnitData defaultData, Transform unitPool, UnitData ownerData = null)
+    public void Init(UnitData defaultData, Transform unitPool)
     {
         _defaultData = defaultData;
         _unitPool = unitPool;
 
-        if (ownerData == null)
-            _ownerData = defaultData;
-        else
-            _ownerData = ownerData;
-
-        ChangeColor(_ownerData.Type.Color);
+        ChangeColor();
         StartCoroutine(StartReproduction());
+    }
+    public void SetOwner(UnitData owner)
+    {
+        _ownerData = owner;
+        ChangeColor();
     }
     public void SendUnits(Transform target)
     {
@@ -106,8 +106,9 @@ public class Cell : MonoBehaviour
             _mass = 1;
         }
     }
-    private void ChangeColor(Color color)
+    private void ChangeColor()
     {
+        var color = _ownerData.Type.Color;
         _spriteRenderer.color = color;
     }
     private IEnumerator StartReproduction()
