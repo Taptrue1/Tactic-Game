@@ -80,7 +80,7 @@ public class Cell : MonoBehaviour
             _mass--; //ApplyDamage(unit.OwnerData.Attack)
 
         ChangeOwner(unit);
-        ChangeColor(_ownerData.Type.Color);
+        ChangeColor();
     }
     private void ApplyDamage(int value)
     {

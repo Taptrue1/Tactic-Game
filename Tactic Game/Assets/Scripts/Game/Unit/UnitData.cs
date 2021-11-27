@@ -13,7 +13,7 @@ public class UnitData
     private Characteristic _reproduction;
     private Characteristic _speed;
 
-    public UnitData(UnitType type, int attack, int defence, int reproduction, int speed)
+    public UnitData(UnitType type, float attack, float defence, float reproduction, float speed)
     {
         _type = type;
         _attack = new Characteristic(attack);

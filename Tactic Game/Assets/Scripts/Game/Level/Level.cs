@@ -12,15 +12,14 @@ public class Level : MonoBehaviour
     [SerializeField] private Cell _playerStartCell;
 
     [Header("Artificial Inlelligence")]
-    [SerializeField] private int _analizeDelay;
-    [SerializeField] private Cell[] _AiStartCells;
+    [SerializeField] private int _analizeDelay = 2;
+    [SerializeField] private AiSetting[] _ai;
 
     [Header("Referee Options")]
     [SerializeField] private float _checkDelay;
 
     [Header("Types")]
     [SerializeField] private UnitType _playerType;
-    [SerializeField] private UnitType _aiType;
     [SerializeField] private UnitType _defaultType;
 
     private UnitData _playerData;
@@ -44,7 +43,7 @@ public class Level : MonoBehaviour
     private void InitDatas()
     {
         _playerData = new UnitData(_playerType, 2, 2, 2, 2);
-        _aiData = new UnitData(_aiType, 1, 1, 1, 1);
+        _aiData = new UnitData(null, 1, 1, 1, 1);
         _defaultData = new UnitData(_defaultType, 0, 0, 0, 0);
     }
     private void InitPlayer()
@@ -54,7 +53,10 @@ public class Level : MonoBehaviour
     }
     private void InitAi()
     {
-
+        foreach(AiSetting setting in _ai)
+        {
+            setting.Init(_aiData, _cellsPool);
+        }
     }
     private void InitReferee()
     {

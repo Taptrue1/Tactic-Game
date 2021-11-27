@@ -185,17 +185,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6072833697550119385, guid: 6426dc34e3c43764199a983498cc8f16, type: 3}
   m_PrefabInstance: {fileID: 68694888}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &252447912 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6072833697550119383, guid: 6426dc34e3c43764199a983498cc8f16, type: 3}
-  m_PrefabInstance: {fileID: 68694888}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d54e5c2efc6d4454d8dcda9fe254016e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &404505917
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,13 +403,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a7026ff0c062f748b51fc9d116527da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cellsPool: {fileID: 1485018526}
   _unitsPool: {fileID: 404505918}
+  _cellsPool: {fileID: 1485018526}
   _player: {fileID: 1031984100}
-  _ai: {fileID: 1740834161}
+  _playerStartCell: {fileID: 0}
+  _analizeDelay: 2
+  _ai:
+  - _startCell: {fileID: 1746728105}
+    _aiType: {fileID: 11400000, guid: 23bbdd0e548398c4f956a73386712531, type: 2}
   _checkDelay: 1
-  _playerCell: {fileID: 252447912}
-  _aiCell: {fileID: 1746728105}
   _playerType: {fileID: 11400000, guid: 1fc4fb6cf364e44469846467616a8444, type: 2}
   _aiType: {fileID: 11400000, guid: 23bbdd0e548398c4f956a73386712531, type: 2}
   _defaultType: {fileID: 11400000, guid: 30a3f887fbf66674eb1efbadb096a0cb, type: 2}
@@ -605,6 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607decb59c25e2549aaa218d5eacfd2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _data: {_type: {fileID: 0}}
+  _pool: {fileID: 0}
 --- !u!4 &1740834162
 Transform:
   m_ObjectHideFlags: 0
