@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
     }
     private void ChooseCell(Cell cell)
     {
-        var isMyCell = cell.Type == _data.Type;
+        var isMyCell = cell.OwnerType == _data.Type;
         var containsCell = _choosedCells.Contains(cell);
 
         if (!containsCell && isMyCell)

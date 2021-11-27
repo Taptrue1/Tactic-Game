@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cell : MonoBehaviour
 {
     public int Mass => _mass;
-    public UnitType Type => _ownerData.Type;
+    public UnitType OwnerType => _ownerData.Type;
 
     [SerializeField] private float _unitSpawnOffset;
     [SerializeField] private int _mass;
@@ -73,7 +73,7 @@ public class Cell : MonoBehaviour
     }
     private void Attack(Unit unit)
     {
-        var isMyUnit = unit.Type == Type;
+        var isMyUnit = unit.Type == OwnerType;
 
         if (isMyUnit)
             _mass++;
