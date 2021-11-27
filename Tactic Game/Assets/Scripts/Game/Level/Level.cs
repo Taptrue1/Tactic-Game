@@ -1,72 +1,83 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Level : MonoBehaviour
 {
     [Header("Pools")]
-    [SerializeField] private Transform _unitsPool;
     [SerializeField] private CellsPool _cellsPool;
+    [SerializeField] private GameObject _unitsPool;
+
+    [Header("Types")]
+    [SerializeField] private UnitType _playerType;//
+    [SerializeField] private UnitType _defaultType;
+    [SerializeField] private UnitType[] _aisType;
 
     [Header("Player")]
     [SerializeField] private Player _player;
-    [SerializeField] private Cell _playerStartCell;
+    [SerializeField] private Cell _startPlayerCell;
 
-    [Header("Artificial Inlelligence")]
-    [SerializeField] private int _analizeDelay = 2;
-    [SerializeField] private AiSetting[] _ai;
+    [Header("AI")]
+    [SerializeField] private float _analyzeDelay;
+    [SerializeField] private AiConfig[] _ais;
 
     [Header("Referee Options")]
     [SerializeField] private float _checkDelay;
 
-    [Header("Types")]
-    [SerializeField] private UnitType _playerType;
-    [SerializeField] private UnitType _defaultType;
-
-    private UnitData _playerData;
-    private UnitData _aiData;
-    private UnitData _defaultData;
+    private UnitData _playerData;//
+    private UnitData _defaultAIData;//
+    private UnitData _defaultCellData;
 
     private Referee _referee;
     private Drawer _drawer;
 
+    private const float _randomOffset = 1;
+
     private void Start()
     {
-        InitDatas();
-        _cellsPool.Init(_defaultData, _unitsPool);
+        InitData();
+        _cellsPool.Init(_defaultCellData, _unitsPool);
         InitPlayer();
-        InitAi();
-
+        InitAI();
         InitReferee();
         InitDrawer();
     }
 
-    private void InitDatas()
+    private void InitData()
     {
         _playerData = new UnitData(_playerType, 2, 2, 2, 2);
-        _aiData = new UnitData(null, 1, 1, 1, 1);
-        _defaultData = new UnitData(_defaultType, 0, 0, 0, 0);
+        _defaultAIData = new UnitData(null, 1, 1, 1, 1);
+        _defaultCellData = new UnitData(_defaultType, 0, 0, 0, 0);
     }
     private void InitPlayer()
     {
         _player.Init(_playerData);
-        _playerStartCell.SetOwner(_playerData);
+        _startPlayerCell.SetOwner(_playerData);
     }
-    private void InitAi()
+    private void InitAI()
     {
-        foreach(AiSetting setting in _ai)
+        foreach(AiConfig aiConfig in _ais)
         {
-            setting.Init(_aiData, _cellsPool);
+            var ai = aiConfig.Init(_cellsPool, _defaultAIData, RandomizeAIType(), _randomOffset);
+            StartCoroutine(ai.StartAnalize(_analyzeDelay));
         }
     }
     private void InitReferee()
     {
         _referee = new Referee();
-        _referee.Init(_cellsPool, _unitsPool.gameObject, _checkDelay);
+        _referee.Init(_cellsPool, _unitsPool, _checkDelay);
         StartCoroutine(_referee.StartCheckLoop());
     }
     private void InitDrawer()
     {
         _drawer = new Drawer();
         _drawer.Init(_player);
+    }
+
+    private UnitType RandomizeAIType()
+    {
+        var typeIndex = Random.Range(0, _aisType.Length);
+
+        return _aisType[typeIndex];
     }
 }

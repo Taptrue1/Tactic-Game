@@ -8,7 +8,7 @@ public class CellsPool : MonoBehaviour
     
     private List<Cell> _cells;
 
-    public void Init(UnitData defaultData, Transform unitPool)
+    public void Init(UnitData defaultData, GameObject unitPool)
     {
         _cells = GetAllCells();
         InitCells(defaultData, unitPool);
@@ -37,7 +37,7 @@ public class CellsPool : MonoBehaviour
         }
         return cells;
     }
-    private void InitCells(UnitData defaultData, Transform unitPool)
+    private void InitCells(UnitData defaultData, GameObject unitPool)
     {
         foreach(Cell cell in _cells)
         {

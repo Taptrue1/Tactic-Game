@@ -13,7 +13,7 @@ public class Cell : MonoBehaviour
     private UnitData _ownerData;
     private UnitData _defaultData;
     private SpriteRenderer _spriteRenderer;
-    private Transform _unitPool;
+    private GameObject _unitPool;
 
     private void Awake()
     {
@@ -29,9 +29,10 @@ public class Cell : MonoBehaviour
         Attack(unit);
     }
 
-    public void Init(UnitData defaultData, Transform unitPool)
+    public void Init(UnitData defaultData, GameObject unitPool)
     {
         _defaultData = defaultData;
+        _ownerData = defaultData;
         _unitPool = unitPool;
 
         ChangeColor();
@@ -64,7 +65,7 @@ public class Cell : MonoBehaviour
         var x = transform.position.x + Random.Range(-_unitSpawnOffset, _unitSpawnOffset);
         var y = transform.position.y + Random.Range(-_unitSpawnOffset, _unitSpawnOffset);
         var spawnPosition = new Vector2(x, y);
-        var unit = _ownerData.Type.GetUnit(spawnPosition, _unitPool);
+        var unit = _ownerData.Type.GetUnit(spawnPosition, _unitPool.transform);
 
         unit.Init(_ownerData);
 
@@ -108,8 +109,7 @@ public class Cell : MonoBehaviour
     }
     private void ChangeColor()
     {
-        var color = _ownerData.Type.Color;
-        _spriteRenderer.color = color;
+        _spriteRenderer.color = _ownerData.Type.Color;
     }
     private IEnumerator StartReproduction()
     {
