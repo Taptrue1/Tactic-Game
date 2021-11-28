@@ -17,21 +17,21 @@ public class CellsPool : MonoBehaviour
     }
     public List<Cell> GetEnemyCells(UnitType type) => _cells.Where(cell => cell.OwnerType != type).ToList();
     public List<Cell> GetMyCells(UnitType type) => _cells.Where(cell => cell.OwnerType == type).ToList();
+    public bool IsEnemiesDefeated(UnitType playerType)
+    {
+        foreach (Cell cell in _cells)
+        {
+            if (cell.OwnerType != playerType && cell.OwnerType != _defaultType)
+                return false;
+        }
+        return true;
+    }
     public bool IsAllCellsCaptured()
     {
         var firstCell = _cells[0];
         foreach(Cell cell in _cells)
         {
             if (firstCell.OwnerType != cell.OwnerType)
-                return false;
-        }
-        return true;
-    }
-    public bool IsAIDefeated(UnitType playerType)
-    {
-        foreach (Cell cell in _cells)
-        {
-            if (cell.OwnerType != playerType && cell.OwnerType != _defaultType)
                 return false;
         }
         return true;

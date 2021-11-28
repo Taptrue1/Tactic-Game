@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Level : MonoBehaviour
@@ -11,7 +9,7 @@ public class Level : MonoBehaviour
     [Header("Types")]
     [SerializeField] private UnitType _playerType;//
     [SerializeField] private UnitType _defaultType;
-    [SerializeField] private UnitType[] _aisType;
+    [SerializeField] private UnitType[] _aiTypes;
 
     [Header("Player")]
     [SerializeField] private Player _player;
@@ -65,7 +63,7 @@ public class Level : MonoBehaviour
     private void InitReferee()
     {
         _referee = new Referee();
-        _referee.Init(_cellsPool, _unitsPool, _checkDelay);
+        _referee.Init(_cellsPool, _unitsPool, _playerType, _checkDelay);
         StartCoroutine(_referee.StartCheckLoop());
     }
     private void InitDrawer()
@@ -76,8 +74,8 @@ public class Level : MonoBehaviour
 
     private UnitType RandomizeAIType()
     {
-        var typeIndex = Random.Range(0, _aisType.Length);
+        var typeIndex = Random.Range(0, _aiTypes.Length);
 
-        return _aisType[typeIndex];
+        return _aiTypes[typeIndex];
     }
 }

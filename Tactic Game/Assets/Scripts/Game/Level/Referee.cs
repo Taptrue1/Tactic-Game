@@ -5,12 +5,14 @@ public class Referee
 {
     private CellsPool _cellsPool;
     private GameObject _unitsPool;
+    private UnitType _playerType;
     private float _checkDelay;
 
-    public void Init(CellsPool cellsPool, GameObject unitsPool, float checkDelay)
+    public void Init(CellsPool cellsPool, GameObject unitsPool, UnitType playerType, float checkDelay)
     {
         _cellsPool = cellsPool;
         _unitsPool = unitsPool;
+        _playerType = playerType;
         _checkDelay = checkDelay;
     }
     public IEnumerator StartCheckLoop()
@@ -27,6 +29,6 @@ public class Referee
     {
         var isUnitsPoolEmpty = _unitsPool.transform.childCount == 0;
 
-        return isUnitsPoolEmpty && _cellsPool.IsAllCellsCaptured();
+        return isUnitsPoolEmpty && _cellsPool.IsEnemiesDefeated(_playerType);
     }
 }
