@@ -429,9 +429,7 @@ MonoBehaviour:
   _unitsPool: {fileID: 404505917}
   _playerType: {fileID: 11400000, guid: 1fc4fb6cf364e44469846467616a8444, type: 2}
   _defaultType: {fileID: 11400000, guid: 30a3f887fbf66674eb1efbadb096a0cb, type: 2}
-  _aisType:
-  - {fileID: 11400000, guid: 23bbdd0e548398c4f956a73386712531, type: 2}
-  - {fileID: 11400000, guid: 758d8cfad3424dd4291cbbd56ebe7eb7, type: 2}
+  _aiTypes: []
   _player: {fileID: 1031984100}
   _startPlayerCell: {fileID: 68694890}
   _analyzeDelay: 5
