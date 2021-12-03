@@ -26,6 +26,15 @@ public class CellsPool : MonoBehaviour
         }
         return true;
     }
+    public bool IsPlayerDefeated(UnitType playerType)
+    {
+        foreach(Cell cell in _cells)
+        {
+            if (cell.OwnerType == playerType)
+                return false;
+        }
+        return true;
+    }
     public bool IsAllCellsCaptured()
     {
         var firstCell = _cells[0];

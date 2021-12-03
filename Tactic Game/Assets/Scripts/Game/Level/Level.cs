@@ -7,7 +7,6 @@ public class Level : MonoBehaviour
     [SerializeField] private GameObject _unitsPool;
 
     [Header("Types")]
-    [SerializeField] private UnitType _playerType;//
     [SerializeField] private UnitType _defaultType;
     [SerializeField] private UnitType[] _aiTypes;
 
@@ -22,17 +21,21 @@ public class Level : MonoBehaviour
     [Header("Referee Options")]
     [SerializeField] private float _checkDelay;
 
-    private UnitData _playerData;//
-    private UnitData _defaultAIData;//
+    private UnitData _playerData;
+    private UnitData _defaultAIData;
     private UnitData _defaultCellData;
 
     private Referee _referee;
     private Drawer _drawer;
+    private InformationMover _informationMover;
 
     private const float _randomOffset = 1;
 
     private void Start()
     {
+        _informationMover = FindObjectOfType<InformationMover>();
+        _analyzeDelay = _informationMover.AIAnalizeDelay;
+
         InitData();
         _cellsPool.Init(_defaultCellData, _unitsPool);
         InitPlayer();
@@ -43,8 +46,8 @@ public class Level : MonoBehaviour
 
     private void InitData()
     {
-        _playerData = new UnitData(_playerType, 2, 2, 2, 2);
-        _defaultAIData = new UnitData(null, 1, 1, 1, 1);
+        _playerData = _informationMover.PlayerData;
+        _defaultAIData = _informationMover.AIData;
         _defaultCellData = new UnitData(_defaultType, 0, 0, 0, 0);
     }
     private void InitPlayer()
@@ -63,7 +66,7 @@ public class Level : MonoBehaviour
     private void InitReferee()
     {
         _referee = new Referee();
-        _referee.Init(_cellsPool, _unitsPool, _playerType, _checkDelay);
+        _referee.Init(_cellsPool, _unitsPool, _playerData.Type, _checkDelay, _informationMover);
         StartCoroutine(_referee.StartCheckLoop());
     }
     private void InitDrawer()
