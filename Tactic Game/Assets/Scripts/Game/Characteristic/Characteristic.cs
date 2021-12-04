@@ -1,13 +1,13 @@
 ﻿using System;
-
+using UnityEngine;
+[System.Serializable]
 public class Characteristic
 {
     public float Value => _value;
 
-    private float _value;
-    private int _price;
-
-    private UpgradeData _data;
+    [SerializeField] private UpgradeData _data;
+    [SerializeField] private float _value;
+    [SerializeField] private int _price;
 
     public Characteristic(float value, int price = 0, UpgradeData data = null)
     {
@@ -18,12 +18,10 @@ public class Characteristic
 
     public int Upgrade(int money)
     {
-        var resultMoney = money;
+        var price = _price;
 
         if(CanUpgrade(money))
         {
-            resultMoney -= _price;
-
             switch(_data.BonusOperation)
             {
                 case Operation.Add: _value += _data.BonusCoeff; break;
@@ -35,9 +33,11 @@ public class Characteristic
                 case Operation.Add: _price = (int)_data.PriceCoeff; break;
                 case Operation.Multiply: _price =  Convert.ToInt32(_price * _data.PriceCoeff); break;
             }
+
+            return price;
         }
 
-        return resultMoney;
+        return 0;
     }
 
     private bool CanUpgrade(int money) => money >= _price;

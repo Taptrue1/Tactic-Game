@@ -1,5 +1,4 @@
 using System;
-
 public class Money
 {
     public int Value => _value;
@@ -9,18 +8,18 @@ public class Money
 
     public void Add(int value)
     {
-        if (value < 0) return;
+        if (value <= 0) return;
 
         _value += value;
 
-        MoneyChanged?.Invoke(value);
+        MoneyChanged?.Invoke(_value);
     }
     public void Subtract(int value)
     {
-        if (value < 0) return;
+        if (value <= 0) return;
 
         _value -= value;
-
-        MoneyChanged?.Invoke(value);
+        
+        MoneyChanged?.Invoke(_value);
     }
 }

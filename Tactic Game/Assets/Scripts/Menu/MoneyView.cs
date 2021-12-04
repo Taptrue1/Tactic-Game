@@ -4,9 +4,9 @@ using TMPro;
 public class MoneyView : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _moneyText;
-    [SerializeField] private string _textFormat = "${0}";
+    [SerializeField] private string _textFormat = "{0}$";
 
-    public MoneyView(Money money)
+    public void Init(Money money)
     {
         money.MoneyChanged = OnMoneyChanged;
     }

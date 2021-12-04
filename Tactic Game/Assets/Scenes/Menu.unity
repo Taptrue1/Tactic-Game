@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 48122711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1697081417}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: UpgradeReproduction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &48122711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,6 +267,7 @@ GameObject:
   - component: {fileID: 80869814}
   - component: {fileID: 80869816}
   - component: {fileID: 80869815}
+  - component: {fileID: 80869817}
   m_Layer: 5
   m_Name: Money
   m_TagString: Untagged
@@ -378,6 +391,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80869813}
   m_CullTransparentMesh: 1
+--- !u!114 &80869817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80869813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b7ae4b139c15da40b8a919fb30388ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moneyText: {fileID: 80869815}
+  _textFormat: ${0}
 --- !u!1 &173612641
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +487,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 173612644}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1697081417}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: UpgradeSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &173612644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -949,7 +988,7 @@ RectTransform:
   - {fileID: 48122709}
   - {fileID: 173612642}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1038,7 +1077,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 756114127}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1697081417}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: ExitMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &756114127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1159,7 +1210,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1115948810}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1697081417}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: UpgradeDefence
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1115948810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1416,7 +1479,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1302729094}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1697081417}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: UpgradeAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1302729094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1537,7 +1612,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1398943002}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1697081417}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1398943002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1846,6 +1933,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665950963}
   m_CullTransparentMesh: 1
+--- !u!1 &1697081416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697081418}
+  - component: {fileID: 1697081417}
+  m_Layer: 0
+  m_Name: Menu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1697081417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697081416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e4ef0da4911bb4e88fef0880af1462, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attack:
+    _data: {fileID: 11400000, guid: 99ba299d7af021249922164c5469a5b0, type: 2}
+    _value: 2
+    _price: 100
+  _defence:
+    _data: {fileID: 11400000, guid: 388bad49d4be54e47b5904b1a4e0a449, type: 2}
+    _value: 2
+    _price: 200
+  _reproduction:
+    _data: {fileID: 11400000, guid: 18848bd30a32e9c4faada38791384248, type: 2}
+    _value: 2
+    _price: 200
+  _speed:
+    _data: {fileID: 11400000, guid: e62a4e16b84814446941755b3d769337, type: 2}
+    _value: 2
+    _price: 100
+  _playerType: {fileID: 11400000, guid: 1fc4fb6cf364e44469846467616a8444, type: 2}
+  _moneyView: {fileID: 80869817}
+--- !u!4 &1697081418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697081416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1739513819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1910,7 +2058,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1771536186
 GameObject:

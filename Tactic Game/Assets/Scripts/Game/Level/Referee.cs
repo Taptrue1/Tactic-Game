@@ -29,9 +29,9 @@ public class Referee
             isGameOver = isUnitsPoolEmpty && (isAIDefeated || isPlayerDefeated);
 
             if (isPlayerDefeated)
-                _informationMover.IsWin = false;
+                _informationMover.GameOver(false);
             else if (isAIDefeated)
-                _informationMover.IsWin = true;
+                _informationMover.GameOver(true);
 
             yield return new WaitForSeconds(_checkDelay);
         }
